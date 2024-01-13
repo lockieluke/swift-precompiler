@@ -185,10 +185,6 @@ fn main() {
                                             }))
                                             .filter(|(_, path)| path.exists())
                                             .map(|(alias, path)| (alias, path.display().to_string()))
-                                            .map(|(alias, path)| {
-                                                println!("{}", path);
-                                                (alias, path)
-                                            })
                                             .for_each(|(alias, path)| {
                                                 include_str_og_path_str = include_str_og_path_str.replace(alias, &*path);
                                             });
