@@ -13,8 +13,8 @@ use colored::Colorize;
 use fancy_regex::Regex;
 use glob::glob;
 use path_absolutize::*;
-use crate::config::Config;
 
+use crate::config::Config;
 use crate::expression::Expression;
 
 mod expression;
@@ -141,6 +141,7 @@ fn main() {
             }
 
             let include_str_regex = Regex::new(Expression::INCLUDE_STR_RGX).unwrap();
+            let include_data_regex = Regex::new(Expression::INCLUDE_DATA_RGX).unwrap();
             let mut included_og_paths: Vec<String> = vec![];
 
             directory.split(":")
@@ -158,6 +159,7 @@ fn main() {
                             include_str_regex
                                 .captures_iter(entry_content_str.as_str())
                                 .into_iter()
+                                .chain(include_data_regex.captures_iter(entry_content_str.as_str()))
                                 .flatten()
                                 .for_each(|capture| {
                                     let include_str_call = capture.get(0).expect("Unable to get include_str call");
@@ -214,10 +216,14 @@ fn main() {
                                     if !included_og_paths.contains(&include_str_og_path.as_str().to_string()) {
                                         if !dry_run {
                                             let content_of_file = std::fs::read_to_string(include_str_path.as_ref().unwrap()).expect("Unable to read file to embed");
-                                            precompile_file_data = precompile_file_data.replace("// <precompile-content>", &*format!("\
-        // <precompile-content>
+                                            vec!["precompile-content-str", "precompile-content-data"]
+                                                .iter()
+                                                .for_each(|placeholder| {
+                                                    precompile_file_data = precompile_file_data.replace(&*format!("// <{}>", placeholder), &*format!("\
+        // <{}>
         case \"{}\":
-            content = \"{}\"\n", include_str_og_path.as_str(), BASE64_STANDARD.encode(content_of_file)));
+            content = \"{}\"\n", placeholder, include_str_og_path.as_str(), BASE64_STANDARD.encode(content_of_file.to_owned())));
+                                                });
                                         }
 
                                         included_og_paths.push(include_str_og_path.as_str().to_owned());

@@ -30,10 +30,21 @@ extension String {
 func precompileIncludeStr(_ path: String) -> String {
     var content: String = ""
     switch (path) {
-        // <precompile-content>
+        // <precompile-content-str>
         default:
             fatalError("Error: include file not found: \(path)")
     }
 
     return String.fromBase64(content) ?? ""
+}
+
+func precompileIncludeData(_ path: String) -> Data {
+    var content: String = ""
+    switch (path) {
+        // <precompile-content-data>
+        default:
+            fatalError("Error: include file not found: \(path)")
+    }
+
+    return Data.fromBase64(content) ?? Data()
 }
