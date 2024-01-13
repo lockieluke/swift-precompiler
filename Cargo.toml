@@ -3,6 +3,10 @@ name = "swift-precompiler"
 description = "A precompiler for Swift that allows you to use additional macros, include files, and more."
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+documentation = "https://docs.rs/swift-precompiler"
+homepage = "https://github.com/ciderapp/swift-precompiler"
+repository = "https://github.com/ciderapp/swift-precompiler"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
