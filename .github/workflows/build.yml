@@ -9,19 +9,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Install Taskfile
+        run: brew install go-task
+
       - name: Setup Rust Toolchain
         uses: ATiltedTree/setup-rust@v1
         with:
-          rust-version: stable
+          rust-version: nightly
+          targets: 'aarch64-apple-darwin x86_64-apple-darwin'
 
       - name: Build
-        run: cargo build --release
+        run: task build-universal
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: swift-precompiler
-          path: target/release/swift-precompiler
+          path: target/swift-precompiler
 
       - uses: sarisia/actions-status-discord@v1
         if: always()

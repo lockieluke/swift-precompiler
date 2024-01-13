@@ -14,6 +14,7 @@ tasks:
     generates:
       - "target/aarch64-apple-darwin/release/{{.BINARY_NAME}}"
       - "target/x86_64-apple-darwin/release/{{.BINARY_NAME}}"
+      - "target/{{.BINARY_NAME}}"
     cmds:
       - |
         cargo build --release --target x86_64-apple-darwin
