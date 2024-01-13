@@ -41,3 +41,5 @@ Run `swift-precompiler` to precompile all Swift files in the directories specifi
 ```shell
 swift-precompiler precompile
 ```
+
+<sub>You should add `Precompiled.swift` to your `.gitignore`</sub>
