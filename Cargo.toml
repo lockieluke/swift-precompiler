@@ -1,0 +1,20 @@
+[package]
+name = "swift-precompiler"
+description = "A precompiler for Swift that allows you to use additional macros, include files, and more."
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+base64 = "0.21.7"
+clap = { version = "4.4.14", features = ["derive"] }
+colored = "2.1.0"
+fancy-regex = "0.13.0"
+glob = "0.3.1"
+path-absolutize = "3.1.1"
+toml = "0.8.8"
+serde = { version = "1.0.195", features = ["derive"] }
+
+[[bin]]
+name = "swift-precompiler"
