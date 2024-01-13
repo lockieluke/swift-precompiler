@@ -37,3 +37,7 @@ Including a file as a string literal at compile time:
 let javaScript = precompileIncludeStr("path/to/file.js")
 ```
 
+Run `swift-precompiler` to precompile all Swift files in the directories specified in the config file
+```shell
+swift-precompiler precompile
+```
