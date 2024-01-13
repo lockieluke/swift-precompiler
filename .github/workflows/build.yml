@@ -1,0 +1,33 @@
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: [ self-hosted, macOS, ARM64 ]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Rust Toolchain
+        uses: ATiltedTree/setup-rust@v1
+        with:
+          rust-version: stable
+
+      - name: Build
+        run: cargo build --release
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: swift-precompiler
+          path: target/release/swift-precompiler
+
+      - uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          title: "deploy"
+          description: "Build swift-precompiler"
+          url: "https://github.com/ciderapp/swift-precompiler/actions"
+          username: GitHub Actions
+          avatar_url: "https://avatars.githubusercontent.com/u/87914859?s=200&v=4"
