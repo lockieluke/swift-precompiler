@@ -25,7 +25,7 @@ Example:
 ```toml
 dirs = ["Cider/", "CiderPlaybackAgent/"]
 
-[path_aliases]
+[[path_aliases]]
 # "@" as a path alias refers to the current working directory in most cases
 "@" = "./"
 ```
