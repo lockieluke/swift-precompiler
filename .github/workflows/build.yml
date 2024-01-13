@@ -1,3 +1,5 @@
+name: 🏗 Build on CI
+
 on:
   push:
     branches: [ main ]
