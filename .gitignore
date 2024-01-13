@@ -1,6 +1,9 @@
 # Build files
 /target
 
+# Taskfile
+.task/
+
 # IDE
 .idea/
 

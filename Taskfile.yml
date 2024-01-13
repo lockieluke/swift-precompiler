@@ -1,0 +1,34 @@
+version: 3
+
+vars:
+  BINARY_NAME: "swift-precompiler"
+
+tasks:
+  build-universal:
+    desc: "Build universal binary"
+    sources:
+      - "src/**/*.rs"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "assets/**/*"
+    generates:
+      - "target/aarch64-apple-darwin/release/{{.BINARY_NAME}}"
+      - "target/x86_64-apple-darwin/release/{{.BINARY_NAME}}"
+    cmds:
+      - |
+        cargo build --release --target x86_64-apple-darwin
+        cargo build --release --target aarch64-apple-darwin
+        
+        lipo -create -output target/{{.BINARY_NAME}} target/x86_64-apple-darwin/release/{{.BINARY_NAME}} \
+        target/aarch64-apple-darwin/release/{{.BINARY_NAME}}
+
+  create-brew-archive:
+    desc: "Create archive for Homebrew"
+    sources:
+      - "target/{{.BINARY_NAME}}"
+    generates:
+      - "target/{{.BINARY_NAME}}.tar.gz"
+    cmds:
+      - |
+        tar -czf target/{{.BINARY_NAME}}.tar.gz target/{{.BINARY_NAME}}
+        sha256sum target/{{.BINARY_NAME}}.tar.gz
