@@ -1,7 +1,7 @@
 [package]
 name = "swift-precompiler"
 description = "A precompiler for Swift that allows you to use additional macros, include files, and more."
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 license = "MIT"
 documentation = "https://docs.rs/swift-precompiler"

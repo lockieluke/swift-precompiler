@@ -238,10 +238,9 @@ fn main() {
             }
 
             let precompile_time_millis = precompile_time.elapsed().as_millis();
-            println!("{}: Precompiled {} calls to {} in {}{}", "success".green(), included_og_paths.len(),
-                     format!("{}", if dry_run { "memory" } else { &out_abs_path }),
+            println!("{}: Precompiled {} calls in {}{}", "success".green(), included_og_paths.len(),
                      (if precompile_time_millis < 1000 { format!("{}ms", precompile_time_millis) } else { format!("{}s", precompile_time.elapsed().as_secs()) }).to_string().bold(),
-                     if dry_run { String::new() } else { format!(", add {} to your Xcode build phase", out_abs_path.bold()) }
+                     if dry_run || xcode_script_renderer { String::new() } else { format!(", add {} to your Xcode build phase", out_abs_path.bold()) }
             );
         }
         Commands::Clean {
