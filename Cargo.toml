@@ -5,8 +5,8 @@ version = "0.1.4"
 edition = "2021"
 license = "MIT"
 documentation = "https://docs.rs/swift-precompiler"
-homepage = "https://github.com/ciderapp/swift-precompiler"
-repository = "https://github.com/ciderapp/swift-precompiler"
+homepage = "https://github.com/lockieluke/swift-precompiler"
+repository = "https://github.com/lockieluke/swift-precompiler"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
