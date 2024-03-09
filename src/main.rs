@@ -6,8 +6,6 @@ use std::path::{Path, PathBuf};
 use std::process::exit;
 use std::time::Instant;
 
-use base64::Engine;
-use base64::prelude::BASE64_STANDARD;
 use clap::{Parser, Subcommand, ValueHint};
 use colored::Colorize;
 use fancy_regex::Regex;
@@ -222,7 +220,7 @@ fn main() {
                                                     precompile_file_data = precompile_file_data.replace(&*format!("// <{}>", placeholder), &*format!("\
         // <{}>
         case \"{}\":
-            content = \"{}\"\n", placeholder, include_str_og_path.as_str(), BASE64_STANDARD.encode(content_of_file.to_owned())));
+            content = \"{}\"\n", placeholder, include_str_og_path.as_str(), base64_simd::STANDARD.encode_to_string(content_of_file.to_owned())));
                                                 });
                                         }
 
