@@ -22,3 +22,6 @@ serde = { version = "1.0.195", features = ["derive"] }
 
 [[bin]]
 name = "swift-precompiler"
+
+[profile.release]
+lto = true

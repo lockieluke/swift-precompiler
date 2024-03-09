@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(ExtrasBase64)
+import ExtrasBase64
+#endif
 
 extension Data {
     /// Same as ``Data(base64Encoded:)``, but adds padding automatically
@@ -35,7 +38,11 @@ func precompileIncludeStr(_ path: String) -> String {
             fatalError("Error: include file not found: \(path)")
     }
 
+    #if canImport(ExtrasBase64)
+    return String(bytes: try! Base64.decode(string: content), encoding: .utf8) ?? ""
+    #else
     return String.fromBase64(content) ?? ""
+    #endif
 }
 
 func precompileIncludeData(_ path: String) -> Data {

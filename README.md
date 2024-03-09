@@ -48,3 +48,5 @@ swift-precompiler precompile
 ```
 
 <sub>You should add `Precompiled.swift` to your `.gitignore`</sub>
+
+Swift Precompiler encodes your strings with Base64, you can add [swift-extras-base64](https://github.com/swift-extras/swift-extras-base64) to your project using SPM to enable faster Base64 decode.
