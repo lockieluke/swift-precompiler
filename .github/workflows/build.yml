@@ -35,6 +35,8 @@ jobs:
 
       - name: Publish
         # https://doc.rust-lang.org/cargo/reference/config.html?highlight=CARGO_REGISTRY_TOKEN#credentials
+        env:
+          CARGO_REGISTRY_TOKEN: "${{ secrets.CARGO_REGISTRY_TOKEN }}"
         run: |
           cargo publish
           --verbose
