@@ -58,6 +58,7 @@ enum Commands {
         #[arg(short, long, default_value = "./Precompiled.swift", value_hint = ValueHint::FilePath)]
         out: String
     },
+    #[command(about = "Initialise config file")]
     Init {
         /// Output Swift file with precompiled code
         #[arg(long, default_value = "./swift-precompiled.toml", value_hint = ValueHint::FilePath)]
