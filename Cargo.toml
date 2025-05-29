@@ -12,8 +12,8 @@ repository = "https://github.com/lockieluke/swift-precompiler"
 
 [dependencies]
 clap = { version = "4.4.14", features = ["derive"] }
-colored = "2.1.0"
-fancy-regex = "0.13.0"
+colored = "3.0.0"
+fancy-regex = "0.14.0"
 glob = "0.3.1"
 path-absolutize = "3.1.1"
 toml = "0.8.10"
