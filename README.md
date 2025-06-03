@@ -32,6 +32,10 @@ dirs = ["Cider/", "CiderPlaybackAgent/"]
 
 ### Usage
 
+> [!IMPORTANT]  
+> Disable **User Script Sandboxing** before making a build phase for precompilation
+> <img width="449" alt="image" src="https://github.com/user-attachments/assets/344ec7a6-3343-4a88-b596-6c524e931aa8" />
+
 Including a file as a string literal at compile time:
 ```swift
 let javaScript = precompileIncludeStr("path/to/file.js")
@@ -45,6 +49,11 @@ let image = precompileIncludeData("path/to/image.png")
 Run `swift-precompiler` to precompile all Swift files in the directories specified in the config file
 ```shell
 swift-precompiler precompile
+```
+
+Xcode build phase:
+```shell
+$HOME/.cargo/bin/swift-precompiler precompile --xcode-script-renderer --config $SRCROOT/swift-precompiled.toml
 ```
 
 <sub>You should add `Precompiled.swift` to your `.gitignore`</sub>
